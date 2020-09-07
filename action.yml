@@ -1,4 +1,4 @@
-name: Electron Builder Action
+name: Electron Builder Actionv2
 author: Aian Abdulaziz
 description: Fork from Samuel Meuli Action for building and releasing Electron apps
 
@@ -47,9 +47,9 @@ inputs:
     required: false
     default: "1"
   skip_install:
-    description: Install dep
+    description: Skipp Install dep
     required: false
-    default: false
+    default: '0'
 
   # Deprecated
   app_root:
