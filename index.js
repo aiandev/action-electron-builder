@@ -68,9 +68,10 @@ const runAction = () => {
 	const release = getInput("release", true) === "true";
 	const pkgRoot = getInput("package_root", true);
 	const buildScriptName = getInput("build_script_name", true);
+	const installDep 		= getInput("skip_install") === "false";
 	const skipBuild = getInput("skip_build") === "true";
 	const useVueCli = getInput("use_vue_cli") === "true";
-	const args = getInput("args") || "";
+	const args 			= getInput("args") || "";
 	const maxAttempts = Number(getInput("max_attempts") || "1");
 
 	// TODO: Deprecated option, remove in v2.0. `electron-builder` always requires a `package.json` in
@@ -105,8 +106,11 @@ const runAction = () => {
 	// Disable console advertisements during install phase
 	setEnv("ADBLOCK", true);
 
-	log(`Installing dependencies using ${useNpm ? "NPM" : "Yarn"}…`);
-	run(useNpm ? "npm install" : "yarn", pkgRoot);
+	if(installDep){
+		log(`Installing dependencies using ${useNpm ? "NPM" : "Yarn"}…`);
+		run(useNpm ? "npm install" : "yarn", pkgRoot);
+	}
+
 
 	// Run NPM build script if it exists
 	if (skipBuild) {

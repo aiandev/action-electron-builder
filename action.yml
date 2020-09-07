@@ -1,6 +1,6 @@
 name: Electron Builder Action
-author: Samuel Meuli
-description: GitHub Action for building and releasing Electron apps
+author: Aian Abdulaziz
+description: Fork from Samuel Meuli Action for building and releasing Electron apps
 
 inputs:
   github_token:
