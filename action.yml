@@ -46,6 +46,10 @@ inputs:
     description: Maximum number of attempts for completing the build and release step
     required: false
     default: "1"
+  skip_install:
+    description: Install dep
+    required: false
+    default: false
 
   # Deprecated
   app_root:
