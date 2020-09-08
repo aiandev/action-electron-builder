@@ -27,4 +27,4 @@ jobs:
         run: git tag ${{ github.event.inputs.version }}
       - name: Verify Node Install
         run: |
-          npm --prefix ./ version ${{ github.event.inputs.version }}
+          npm --prefix ./ version ${{ github.event.inputs.version }} --no-git-tag-version
