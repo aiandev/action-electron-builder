@@ -1,12 +1,20 @@
 # .github/workflows/example-2.yml
 
 name: Manual Inputs
-on: 
+on:
   workflow_dispatch:
     inputs:
+      brand:
+        description: Bump brand
+        default: MyPhone
+        required: true
       version:
         description: Bump Version
         default: v1.0.0
+        required: true
+      env:
+        description: Bump Version
+        default: stage
         required: true
 jobs:
   bump-version:
