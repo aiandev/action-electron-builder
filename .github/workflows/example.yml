@@ -23,8 +23,19 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
-      - name: Example variable usage
-        run: git tag ${{ github.event.inputs.version }}
-      - name: Verify Node Install
+      # Optionally: unshallow as a separate operation
+      # - name: Unshallow
+      #   run: git fetch --prune --unshallow
+      - name: Find Tag
+        id: tagger
+        uses: jimschubert/query-tag-action@v1
+        with:
+          include: 'v*'
+          exclude: '*-rc*'
+          commit-ish: 'HEAD~'
+          # if you unshallow in a separate step, use the following option:
+          # skip-unshallow: 'true'
+      - name: Show Tag
+        id: display
         run: |
-          npm --prefix ./ version ${{ github.event.inputs.version }} --no-git-tag-version
+          echo 'Output from Find Tag: ${{steps.tagger.outputs.tag}}'
