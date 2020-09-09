@@ -15,10 +15,14 @@ on:
         description: Bump Version
         default: stage
         required: true
+      password:
+        description: Bump Version
+        required: true
 jobs:
   bump-version:
     name: Bump Package Version
     runs-on: ubuntu-latest
+    if: ${{ secrets.password == github.event.inputs.password }}
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
