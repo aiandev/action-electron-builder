@@ -22,8 +22,12 @@ jobs:
   bump-version:
     name: Bump Package Version
     runs-on: ubuntu-latest
-    if: ${{ secrets.PASSWORD == github.event.inputs.password }}
     steps:
+
+      - name: Check Passowrd
+        if: ${{ secrets.PASSWORD != github.event.inputs.password }}
+        run: exit 1
+
       - name: Check out Git repository
         uses: actions/checkout@v2
       # Optionally: unshallow as a separate operation
