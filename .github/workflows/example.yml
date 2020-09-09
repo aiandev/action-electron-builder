@@ -25,7 +25,7 @@ jobs:
     steps:
 
       - name: Check Passowrd
-        if: ${{ secrets.PASSWORD != github.event.inputs.password }}
+        if: ${{ secrets.PASSWORD }} == ${{ github.event.inputs.password }}
         run: exit 1
 
       - name: Check out Git repository
