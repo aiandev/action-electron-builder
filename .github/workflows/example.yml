@@ -10,8 +10,7 @@ on:
         required: true
       version:
         description: Bump Version
-        default: v1.0.0
-        required: true
+        required: false
       env:
         description: Bump Version
         default: stage
@@ -31,11 +30,8 @@ jobs:
         uses: jimschubert/query-tag-action@v1
         with:
           include: 'v*'
-          exclude: '*-rc*'
-          commit-ish: 'HEAD~'
-          # if you unshallow in a separate step, use the following option:
-          # skip-unshallow: 'true'
       - name: Show Tag
+        if: ${{ !github.event.inputs.version}}
         id: display
         run: |
           echo 'Output from Find Tag: ${{steps.tagger.outputs.tag}}'
