@@ -39,4 +39,4 @@ jobs:
           include: 'v*'
       - name: Set Brand from inputs
         run: |
-          node pages/communicator-app/public/config/brands/index.js --brand=${{ github.event.inputs.brand }} --env=${{github.event.inputs.env}}
+          node config/brands/index.js --brand=${{ github.event.inputs.brand }} --env=${{github.event.inputs.env}}
