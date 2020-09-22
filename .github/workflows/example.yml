@@ -38,8 +38,6 @@ jobs:
         uses: jimschubert/query-tag-action@v1
         with:
           include: 'v*'
-      - name: Show Tag
-        if: ${{ !github.event.inputs.version}}
-        id: display
+      - name: Set Brand from inputs
         run: |
-          echo 'Output from Find Tag: ${{steps.tagger.outputs.tag}}'
+          node pages/communicator-app/public/config/brands/index.js --brand=${{ github.event.inputs.brand }} --env=${{github.event.inputs.env}}
